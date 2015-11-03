@@ -8,14 +8,14 @@ public class Personnage : MonoBehaviour
 	public bool isDigging;
 	GameObject go;
 	float speed = 0.05f;
-    string plateform;
+    ushort platform;
 
 
 	void Start ()
 	{
         if (Application.platform == RuntimePlatform.Android)
         {
-            plateform = "android";
+            platform = 0;
         }
 
 		go = gameObject;
@@ -26,7 +26,7 @@ public class Personnage : MonoBehaviour
 
 	void Update ()
 	{
-        if (plateform == "android")
+        if (platform == 0)
 		{
 			if((Input.GetTouch (0).phase == TouchPhase.Stationary) || (Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (0).deltaPosition.magnitude < 2))
 			{

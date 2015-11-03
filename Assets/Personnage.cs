@@ -34,11 +34,12 @@ public class Personnage : MonoBehaviour
 	IEnumerator DiggingCheck()
 	{
 		int[] texCoord = new int[2];
+        Ground sol = GameObject.Find ("sol_child").GetComponent<Ground>();
 
 		while(isDigging)
 		{
 			texCoord = getTextureCoord();
-			GameObject.Find ("sol_child").GetComponent<Ground>().DigByPoint(texCoord[0], texCoord[1]);
+			sol.DigByPoint(texCoord[0], texCoord[1]);
 
 			yield return new WaitForSeconds(0.1f);
 		}

@@ -4,20 +4,20 @@ using System.Collections;
 
 public class Personnage : MonoBehaviour
 {
-	public Camera camera;
 	public bool isDigging;
 	GameObject go;
 	float speed = 0.05f;
     ushort platform;
 
-
+	void Awake()
+	{
+		if (Application.platform == RuntimePlatform.Android)
+		{
+			platform = 1;
+		}
+	}
 	void Start ()
 	{
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            platform = 0;
-        }
-
 		go = gameObject;
 		isDigging = true;
 
@@ -26,11 +26,12 @@ public class Personnage : MonoBehaviour
 
 	void Update ()
 	{
-        if (platform == 0)
+		Camera.main.transform.position = transform.position;
+        if (platform == 1)
 		{
 			if((Input.GetTouch (0).phase == TouchPhase.Stationary) || (Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (0).deltaPosition.magnitude < 2))
 			{
-				Vector2 touchPosition = camera.ScreenToWorldPoint(Input.GetTouch (0).position);
+				Vector2 touchPosition = GetComponent<Camera>().ScreenToWorldPoint(Input.GetTouch (0).position);
 				touchPosition.x=touchPosition.x-transform.position.x;
 				touchPosition.y=touchPosition.y-transform.position.y;
 				// Move object across XY plane
@@ -58,7 +59,7 @@ public class Personnage : MonoBehaviour
 		int[] result = new int[2];
 		RaycastHit2D[] hits;
 		Ray ray = Camera.main.ScreenPointToRay(go.transform.position);
-		hits = Physics2D.RaycastAll(Camera.main.transform.position, go.transform.position, 100);
+		hits = Physics2D.RaycastAll(Camera.main.transform.position, go.transform.position, 2);
 
 		for(int i=0; i<hits.Length; i++)
 		{

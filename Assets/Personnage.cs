@@ -10,31 +10,13 @@ public class Personnage : MonoBehaviour
 	float speed = 0.05f;
     ushort platform=0;
 
-<<<<<<< HEAD
-	void Awake()
-	{
 
-	}
 	void Start ()
 	{
 		if (Application.platform == RuntimePlatform.Android)
 		{
 			platform = 1;
 		}
-=======
-
-	void Start ()
-	{
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            platform = 0;
-        }
-        else
-        {
-            platform = 1;
-        }
-
->>>>>>> d33a24a55974862c93075d1a3c5f03589cde2b1d
 		go = gameObject;
 		isDigging = true;
 
@@ -43,20 +25,12 @@ public class Personnage : MonoBehaviour
 
 	void Update ()
 	{
-<<<<<<< HEAD
 
 		if (platform == 1)
 		{
 			if((Input.GetTouch (0).phase == TouchPhase.Stationary) || (Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (0).deltaPosition.magnitude < 2))
 			{
 				Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch (0).position);
-=======
-        if (platform == 0)
-		{
-			if((Input.GetTouch (0).phase == TouchPhase.Stationary) || (Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (0).deltaPosition.magnitude < 2))
-			{
-				Vector2 touchPosition = camera.ScreenToWorldPoint(Input.GetTouch (0).position);
->>>>>>> d33a24a55974862c93075d1a3c5f03589cde2b1d
 				touchPosition.x=touchPosition.x-transform.position.x;
 				touchPosition.y=touchPosition.y-transform.position.y;
 				// Move object across XY plane

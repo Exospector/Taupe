@@ -7,17 +7,18 @@ public class Personnage : MonoBehaviour
 	public bool isDigging;
 	GameObject go;
 	float speed = 0.05f;
-    ushort platform;
+    ushort platform=0;
 
 	void Awake()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			platform = 1;
-		}
+
 	}
 	void Start ()
 	{
+		if (Application.platform == RuntimePlatform.Android)
+		{
+			platform = 0;
+		}
 		go = gameObject;
 		isDigging = true;
 
@@ -26,9 +27,9 @@ public class Personnage : MonoBehaviour
 
 	void Update ()
 	{
-		Camera.main.transform.position = transform.position;
-        if (platform == 1)
-		{
+
+		/*if (platform == 0)
+		{*/
 			if((Input.GetTouch (0).phase == TouchPhase.Stationary) || (Input.GetTouch (0).phase == TouchPhase.Moved && Input.GetTouch (0).deltaPosition.magnitude < 2))
 			{
 				Vector2 touchPosition = GetComponent<Camera>().ScreenToWorldPoint(Input.GetTouch (0).position);
@@ -36,8 +37,10 @@ public class Personnage : MonoBehaviour
 				touchPosition.y=touchPosition.y-transform.position.y;
 				// Move object across XY plane
 				transform.Translate (touchPosition.x * speed, touchPosition.y * speed, 0);
+				/*Vector3 vec = new Vector3 (transform.position.x, transform.position.y,Camera.main.transform.position.z);
+				Camera.main.transform.position = vec;*/
 			}
-		}
+		//}
 	}
 
 	IEnumerator DiggingCheck()

@@ -5,10 +5,11 @@ public class Ground : MonoBehaviour
 {
     SpriteRenderer spriteR;
     Texture2D texture;
-    int height, width;
+    int height, width, temp;
     Color col;
     Rect rect;
     Vector2 vec;
+    Color32[] colors;
 
 	void Start()
     {
@@ -28,18 +29,26 @@ public class Ground : MonoBehaviour
 
     public void DigByPoint(int inputx, int inputy)
     {
-        for(int Xc = inputx -30; Xc < inputx + 30; Xc++)
+        colors = texture.GetPixels32();
+        int borderValueTest;
+
+        for(int iteratory = inputy - 30; iteratory < inputy + 30; iteratory++)
         {
-			for(int Yc = inputy - 30; Yc < inputy + 30; Yc++)
+            for (int iteratorx = inputx - 30; iteratorx < inputx + 30; iteratorx++)
             {
-				col = texture.GetPixel(Xc, Yc);
-				if(col.a != 0f)
-				{
-            		col = new Color(0, 0, 0, 0.0f);
-                	texture.SetPixel(Xc, Yc, col);
-				}
+                borderValueTest = iteratory * 1024 + iteratorx;
+                if(borderValueTest >= 0)
+                {
+                    temp = iteratory * 1024 + iteratorx;
+                    if(!(colors[temp].a == 0.0f))
+                    {
+                        colors[temp] = new Color(0, 0, 0, 0.0f);
+                    }
+                }
             }
         }
+
+        texture.SetPixels32(colors);
 
         texture.Apply(false);
 

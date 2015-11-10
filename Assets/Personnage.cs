@@ -17,6 +17,10 @@ public class Personnage : MonoBehaviour
         {
             platform = 0;
         }
+        else
+        {
+            platform = 1;
+        }
 
 		go = gameObject;
 		isDigging = true;
@@ -67,7 +71,7 @@ public class Personnage : MonoBehaviour
 			if(sol.gameObject.tag == "Sol")
 			{
 				Vector2 vec = sol.position;
-				Vector2 vecPers= go.transform.position;
+                Vector2 vecPers = go.transform.position;
 				vec = vec + vecPers;
 				vec *= 128;
 				result[0] = (int)vec.x;

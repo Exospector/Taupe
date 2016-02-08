@@ -51,7 +51,7 @@ public class Personnage : MonoBehaviour
 			texCoord = getTextureCoord();
 			sol.DigByPoint(texCoord[0], texCoord[1]);
 
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.05f);
 		}
 	}
 

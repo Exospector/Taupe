@@ -34,7 +34,7 @@ public class Ground : MonoBehaviour
         colors = texture.GetPixels32();
         int borderValueTest;
 
-        /*for(int iteratory = inputy - 30; iteratory < inputy + 30; iteratory++)
+        for(int iteratory = inputy - 30; iteratory < inputy + 30; iteratory++)
         {
             for (int iteratorx = inputx - 30; iteratorx < inputx + 30; iteratorx++)
             {
@@ -48,9 +48,9 @@ public class Ground : MonoBehaviour
                     }
                 }
             }
-        }*/
+        }
 
-        int d = (5 - 30 * 4) / 4;
+        /*int d = (5 - 30 * 4) / 4;
         int x = 0;
         int y = 30;
         Color color = new Color32(0, 0, 0, 0); ;
@@ -75,7 +75,7 @@ public class Ground : MonoBehaviour
                 y--;
             }
             x++;
-        } while (x <= y);
+        } while (x <= y);*/
 
         texture.SetPixels32(colors);
         texture.Apply(false);

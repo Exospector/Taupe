@@ -50,10 +50,11 @@ public class Ground : MonoBehaviour
             }
         }
 
+        // Attempt at circular digging, keep until shader works
         /*int d = (5 - 30 * 4) / 4;
         int x = 0;
         int y = 30;
-        Color color = new Color32(0, 0, 0, 0); ;
+        Color color = new Color32(0, 0, 0, 0);
  
         do
         {

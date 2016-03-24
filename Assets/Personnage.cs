@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Personnage : MonoBehaviour
 {
-	public Camera camera;
 	public bool isDigging;
 	GameObject go;
 	float speed = 0.05f;
@@ -49,7 +48,7 @@ public class Personnage : MonoBehaviour
 		while(isDigging)
 		{
 			texCoord = getTextureCoord();
-			sol.DigByPoint(texCoord[0], texCoord[1]);
+			sol.DigByPoint(texCoord[0]/64, texCoord[1]/64);
 
 			yield return new WaitForSeconds(0.05f);
 		}

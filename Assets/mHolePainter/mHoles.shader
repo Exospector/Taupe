@@ -13,8 +13,6 @@
     SubShader {
       Tags { "RenderType" = "Opaque" }
       Cull Off
-	  ZTestOff
-	  ZWriteOff
       CGPROGRAM
       //if you're not planning on using shadows, remove "addshadow" for better performance
       #pragma surface surf Lambert addshadow

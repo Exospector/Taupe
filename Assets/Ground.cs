@@ -21,21 +21,8 @@ public class Ground : MonoBehaviour
         rect = new Rect(0, 0, width, height);
         vec = new Vector2(0, 0);
         block = new MaterialPropertyBlock();
-        // Create a new texture and assign it to the renderer's material
-        text = new Texture2D(64, 32);
-        // set texture in the inspector slot
-        GetComponent< SpriteRenderer > ().material.SetTexture("_SliceGuide", text);
-
-        // Fill the texture with white (you could also paint it black, then draw with white)
-        for (int y=0; y < texture.height; ++y) 
-	{
-            for (int x = 0; x < texture.width; ++x) 
-		{
-                texture.SetPixel(x, y, Color.white);
-            }
-        }
-        // Apply all SetPixel calls
-        texture.Apply();
+        GetComponent<SpriteRenderer>().material.SetTexture("_SliceGuide",Instantiate( Resources.Load<Texture2D>("Texture/SliceGuide")));
+        text = (Texture2D)GetComponent<SpriteRenderer>().material.GetTexture("_SliceGuide");
     }
 
 	void Update()

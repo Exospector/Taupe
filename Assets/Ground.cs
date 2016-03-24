@@ -11,7 +11,7 @@ public class Ground : MonoBehaviour
     Vector2 vec;
     Color32[] colors;
     MaterialPropertyBlock block;
-
+    Texture2D text;
 	void Start()
     {
         spriteR = gameObject.GetComponent<SpriteRenderer>();
@@ -21,7 +21,22 @@ public class Ground : MonoBehaviour
         rect = new Rect(0, 0, width, height);
         vec = new Vector2(0, 0);
         block = new MaterialPropertyBlock();
-	}
+        // Create a new texture and assign it to the renderer's material
+        text = new Texture2D(64, 32);
+        // set texture in the inspector slot
+        GetComponent< SpriteRenderer > ().material.SetTexture("_SliceGuide", text);
+
+        // Fill the texture with white (you could also paint it black, then draw with white)
+        for (int y=0; y < texture.height; ++y) 
+	{
+            for (int x = 0; x < texture.width; ++x) 
+		{
+                texture.SetPixel(x, y, Color.white);
+            }
+        }
+        // Apply all SetPixel calls
+        texture.Apply();
+    }
 
 	void Update()
     {
@@ -31,7 +46,7 @@ public class Ground : MonoBehaviour
 
     public void DigByPoint(int inputx, int inputy)
     {
-        colors = texture.GetPixels32();
+        /*colors = texture.GetPixels32();
         int borderValueTest;
 
         for(int iteratory = inputy - 30; iteratory < inputy + 30; iteratory++)
@@ -76,12 +91,15 @@ public class Ground : MonoBehaviour
                 y--;
             }
             x++;
-        } while (x <= y);*/
+        } while (x <= y);
 
         texture.SetPixels32(colors);
         texture.Apply(false);
 
         block.AddTexture("_MainTex", texture);
-        spriteR.SetPropertyBlock(block);
+        spriteR.SetPropertyBlock(block);*/
+        Texture2D tex = text;
+        tex.SetPixel(inputx, inputy, Color.black);
+        tex.Apply();
     }
 }

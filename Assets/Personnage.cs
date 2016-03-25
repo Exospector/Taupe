@@ -35,7 +35,6 @@ public class Personnage : MonoBehaviour
 				// Move object across XY plane
 				transform.Translate (touchPosition.x * speed, touchPosition.y * speed, 0);
 				Vector3 vec = new Vector3 (transform.position.x, transform.position.y,Camera.main.transform.position.z);
-				Camera.main.transform.position = vec;
 			}
 		}
 	}
